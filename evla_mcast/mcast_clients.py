@@ -138,8 +138,8 @@ class AntClient(McastClient):
 # is passed, so the only action taken here is to print log messages when
 # each XML document comes in.
 if __name__ == '__main__':
-    logger.basicConfig(format="%(asctime)-15s %(levelname)8s %(message)s",
-                       level=logger.DEBUG)
+    logging.basicConfig(format="%(asctime)-15s %(levelname)8s %(message)s",
+                       level=logging.DEBUG)
     ant_client = AntClient()
     obs_client = ObsClient()
     try:
