@@ -42,17 +42,17 @@ class ScanConfig(object):
         """
 
         try:        
-            if len(obs):
+            if obs is not None:
                 logger.info('Received obs doc')
                 fobs = open(obs, 'r')
                 obs = objectify.fromstring(fobs.read(), parser=_obs_parser)
                 logger.info('Added obs doc from file {0}'.format(obs))
-            if len(vci):
+            if vci is not None:
                 logger.info('Received vci doc')
                 fvci = open(vci, 'r')
                 vci = objectify.fromstring(fvci.read(), parser=_vci_parser)
                 logger.info('Added vci doc from file {0}'.format(obs))
-            if len(ant):
+            if ant is not None:
                 logger.info('Received ant doc')
                 fant = open(ant, 'r')
                 ant = objectify.fromstring(fant.read(), parser=_ant_parser)
