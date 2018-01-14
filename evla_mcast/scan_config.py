@@ -40,25 +40,30 @@ class ScanConfig(object):
         four to be required.  When all requirements have been filled,
         ScanConfig.is_complete() will return True.
         """
-
-        try:        
-            if obs is not None:
-                logger.info('Received obs doc')
-                fobs = open(obs, 'r')
-                obs = objectify.fromstring(fobs.read(), parser=_obs_parser)
-                logger.info('Added obs doc from file {0}'.format(obs))
-            if vci is not None:
-                logger.info('Received vci doc')
-                fvci = open(vci, 'r')
-                vci = objectify.fromstring(fvci.read(), parser=_vci_parser)
-                logger.info('Added vci doc from file {0}'.format(obs))
-            if ant is not None:
-                logger.info('Received ant doc')
-                fant = open(ant, 'r')
-                ant = objectify.fromstring(fant.read(), parser=_ant_parser)
-                logger.info('Added ant doc from file {0}'.format(ant))
-        except (IOError, TypeError) as exc:
-            logger.info('Assuming one or more doc was already parsed')
+# ae: this is always raising while trying to parse obs because obs
+# is already an objectified tree, not a string or a file. perhaps a 
+# design change occurred? disabling this block and allowing self.set_*
+# below to do the correct thing
+        
+#        try:        
+#            if obs is not None:
+#                logger.info('Received obs doc')
+#                fobs = open(obs, 'r')
+#                obs = objectify.fromstring(fobs.read(), parser=_obs_parser)
+#                logger.info('Added obs doc from file {0}'.format(obs))
+#            if vci is not None:
+#                logger.info('Received vci doc')
+#                fvci = open(vci, 'r')
+#                vci = objectify.fromstring(fvci.read(), parser=_vci_parser)
+#                logger.info('Added vci doc from file {0}'.format(obs))
+#            if ant is not None:
+#                logger.info('Received ant doc')
+#                fant = open(ant, 'r')
+#                ant = objectify.fromstring(fant.read(), parser=_ant_parser)
+#                logger.info('Added ant doc from file {0}'.format(ant))
+#        except (IOError, TypeError) as exc:
+#            logger.info('exception: {}'.format(str(exc)))
+#            logger.info('Assuming one or more doc was already parsed')
 
         self.stopTime = None
 
